@@ -7,9 +7,6 @@ var y = canvas.height - 30;
 var dx = 2;
 var dy = -2;
 
-// var dx = 5;
-// var dy = -5;
-
 var ballRadius = 10;
 
 var paddleHeight = 10;
@@ -39,6 +36,7 @@ for(var c = 0; c < brickColumnCount; c++) {
   }
 }
 
+//衝突判定
 function collisionDetection() {
   for(var c = 0; c < brickColumnCount; c++) {
     for(var r = 0; r < brickRowCount; r++) {
@@ -60,18 +58,21 @@ function collisionDetection() {
   }
 }
 
+//スコア描画
 function drawScore() {
   ctx.font = "16px Arial";
   ctx.fillStyle = "#0095DD";
   ctx.fillText("Score:" + score, 8, 20);
 }
 
+//ライフ描画
 function drawLives() {
   ctx.font = "16px Arial";
   ctx.fillStyle = "#0095DD";
   ctx.fillText("Lives:" + lives, canvas.width - 65, 20);
 }
 
+//ボール描画
 function drawBall() {
   ctx.beginPath();
   ctx.arc(x, y, ballRadius, 0, Math.PI * 2);
@@ -80,6 +81,7 @@ function drawBall() {
   ctx.closePath();
 }
 
+//パドル描画
 function drawPaddle() {
   ctx.beginPath();
   ctx.rect(paddleX, canvas.height - paddleHeight, paddleWidth, paddleHeight);
@@ -88,6 +90,7 @@ function drawPaddle() {
   ctx.closePath();
 }
 
+//ブロック描画
 function drawBricks() {
   for(var c = 0; c < brickColumnCount; c++) {
     for(var r = 0; r < brickRowCount; r++) {
@@ -141,8 +144,6 @@ function draw() {
         y = canvas.height - 30;
         dx = 2;
         dy = -2;
-        // dx = 5;
-        // dy = -5;
         paddleX = (canvas.width - paddleWidth) / 2;
       }
     }
@@ -161,6 +162,7 @@ function draw() {
   requestAnimationFrame(draw);
 }
 
+//キーボード操作、マウス操作
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
 document.addEventListener("mousemove", mouseMoveHandler, false);
